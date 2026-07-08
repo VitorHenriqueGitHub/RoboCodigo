@@ -1,0 +1,7 @@
+inteiro sensor;
+sensor = 4;
+avance(10); 
+vire('esquerda'); 
+se (sensor < 5) entao 
+    avance(2); 
+fim;
