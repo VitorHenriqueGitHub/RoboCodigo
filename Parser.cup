@@ -2,8 +2,8 @@ import java_cup.runtime.*;
 
 parser code {:
     public void syntax_error(Symbol s) {
-        System.err.println("Erro de Sintaxe na linha " + (s.left + 1) + 
-                           ", coluna " + (s.right + 1) + 
+        System.err.println("Erro de Sintaxe na linha " + s.left + 
+                           ", coluna " + s.right + 
                            ". Token nao esperado: '" + s.value + "'");
     }
 :};
@@ -20,7 +20,8 @@ precedence left MAIS, MENOS;
 precedence left MULT, DIV;
 precedence left IGUAL, DIFERENTE, MENOR, MAIOR;
 
-programa ::= lista_comandos ;
+programa ::= lista_comandos 
+             {: System.out.println("\n[Sintático] => ANALISE CONCLUIDA COM SUCESSO! Programa valido.\n"); :} ;
 
 lista_comandos ::= lista_comandos comando 
                  | comando ;
@@ -30,24 +31,34 @@ comando ::= declaracao PONTOVIRGULA
           | cmd_movimento PONTOVIRGULA
           | cmd_condicional
           | cmd_repeticao
-          | error PONTOVIRGULA ;
+          | error PONTOVIRGULA ; 
 
 declaracao ::= INTEIRO ID 
+             {: System.out.println("[Sintático] Regra aplicada: Declaracao de variavel INTEIRA."); :}
              | LOGICO ID 
-             | PONTO ID ;
+             {: System.out.println("[Sintático] Regra aplicada: Declaracao de variavel LOGICA."); :}
+             | PONTO ID 
+             {: System.out.println("[Sintático] Regra aplicada: Declaracao de variavel PONTO."); :} ;
 
 atribuicao ::= ID ATRIBUICAO expressao 
-             | ID ATRIBUICAO LEIASENSOR APARENTESES FPARENTESES ;
+             {: System.out.println("[Sintático] Regra aplicada: Atribuicao de valor a uma variavel."); :}
+             | ID ATRIBUICAO LEIASENSOR APARENTESES FPARENTESES 
+             {: System.out.println("[Sintático] Regra aplicada: Leitura de sensor salva na variavel."); :} ;
 
 cmd_movimento ::= AVANCE APARENTESES expressao FPARENTESES
-                | VIRE APARENTESES TEXTO FPARENTESES ;
+                {: System.out.println("[Sintático] Regra aplicada: Comando de MOVIMENTO (Avance)."); :}
+                | VIRE APARENTESES TEXTO FPARENTESES 
+                {: System.out.println("[Sintático] Regra aplicada: Comando de MOVIMENTO (Vire)."); :} ;
 
-cmd_condicional ::= SE APARENTESES expressao FPARENTESES ENTAO lista_comandos FIM PONTOVIRGULA ;
+cmd_condicional ::= SE APARENTESES expressao FPARENTESES ENTAO lista_comandos FIM PONTOVIRGULA 
+                  {: System.out.println("[Sintático] Regra aplicada: Estrutura CONDICIONAL (se...entao) finalizada."); :} ;
 
-cmd_repeticao ::= ENQUANTO APARENTESES expressao FPARENTESES lista_comandos FIM PONTOVIRGULA ;
+cmd_repeticao ::= ENQUANTO APARENTESES expressao FPARENTESES lista_comandos FIM PONTOVIRGULA 
+                {: System.out.println("[Sintático] Regra aplicada: Estrutura de REPETICAO (enquanto) finalizada."); :} ;
 
 expressao ::= NUMERO
             | ID
+            | TEXTO
             | expressao MAIS expressao
             | expressao MENOS expressao
             | expressao MULT expressao

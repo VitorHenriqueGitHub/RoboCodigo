@@ -9,10 +9,10 @@ import java_cup.runtime.*;
 
 %{
   private Symbol symbol(int type) {
-    return new Symbol(type, yyline, yycolumn);
+    return new Symbol(type, yyline + 1, yycolumn + 1);
   }
   private Symbol symbol(int type, Object value) {
-    return new Symbol(type, yyline, yycolumn, value);
+    return new Symbol(type, yyline + 1, yycolumn + 1, value);
   }
 %}
 
@@ -20,7 +20,7 @@ Linha = \r|\n|\r\n
 Espaco = {Linha} | [ \t\f]
 Numero = [0-9]+ ( \. [0-9]+ )?
 Identificador = [a-zA-Z_][a-zA-Z0-9_]*
-String = \'[^\']*\'
+String = \'[^\']*\'|\"[^\"]*\"
 
 %%
 <YYINITIAL> {
@@ -54,9 +54,10 @@ String = \'[^\']*\'
   "{"           { return symbol(sym.ACHAVES); }
   "}"           { return symbol(sym.FCHAVES); }
 
-  {Numero}        { return symbol(sym.NUMERO, yytext()); }
-  {String}        { return symbol(sym.TEXTO, yytext()); }
-  {Identificador} { return symbol(sym.ID, yytext()); }
+  {Numero}        { System.out.println("  [Léxico] Numero capturado: " + yytext()); return symbol(sym.NUMERO, yytext()); }
+  {String}        { System.out.println("  [Léxico] Texto capturado: " + yytext()); return symbol(sym.TEXTO, yytext()); }
+  {Identificador} { System.out.println("  [Léxico] Variavel capturada: " + yytext()); return symbol(sym.ID, yytext()); }
   {Espaco}        { /* ignora espaços */ }
-  .               { throw new Error("Erro Lexico: " + yytext() + " na linha " + (yyline+1)); }
+  
+  .               { System.err.println("Erro Lexico: Caractere invalido '" + yytext() + "' na linha " + (yyline+1) + ", coluna " + (yycolumn+1)); }
 }
