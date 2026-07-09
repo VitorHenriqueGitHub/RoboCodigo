@@ -1,0 +1,22 @@
+inteiro leitura;
+inteiro tentativas;
+inteiro limite;
+leitura = 0;
+tentativas = 0;
+limite = 3;
+leitura = leiaSensor();
+enquanto (tentativas < limite)
+    se (leitura < 5) entao
+        vire('esquerda');
+        avance(2);
+    fim;
+    se (leitura > 20) entao
+        vire('direita');
+        avance(4);
+    fim;
+    avance(1);
+    leitura = leiaSensor();
+    tentativas = tentativas + 1;
+fim;
+avance(10);
+vire('direita');

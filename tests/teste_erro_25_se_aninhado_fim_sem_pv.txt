@@ -1,0 +1,15 @@
+inteiro a;
+inteiro b;
+inteiro c;
+a = 1;
+b = 2;
+c = a + b;
+se (c > 0) entao
+    avance(c);
+    se (a < b) entao
+        vire('esquerda');
+        avance(a);
+    fim;
+    vire('direita');
+fim
+avance(10);

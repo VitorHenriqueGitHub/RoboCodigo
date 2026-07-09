@@ -1,0 +1,16 @@
+inteiro x;
+inteiro y;
+logico ativo;
+x = 0;
+y = 10;
+ativo = 1;
+enquanto (x < y)
+    se (x == 5) entao
+        vire('direita');
+        avance(3);
+    fim;
+    avance(1);
+    x = x + 1;
+fim;
+vire('esquerda');
+avance(10);

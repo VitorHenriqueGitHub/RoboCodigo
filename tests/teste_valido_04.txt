@@ -1,0 +1,11 @@
+inteiro distancia;
+inteiro contador;
+distancia = leiaSensor();
+contador = 0;
+enquanto (distancia > 10)
+    avance(5);
+    contador = contador + 1;
+    distancia = leiaSensor();
+fim;
+vire('esquerda');
+avance(2);

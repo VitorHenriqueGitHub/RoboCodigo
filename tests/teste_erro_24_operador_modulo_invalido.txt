@@ -1,0 +1,7 @@
+inteiro x;
+inteiro y;
+inteiro z;
+x = 10;
+y = 5;
+z = x % y;
+avance(z);

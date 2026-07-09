@@ -1,0 +1,58 @@
+import java_cup.runtime.*;
+
+parser code {:
+    public void syntax_error(Symbol s) {
+        System.err.println("Erro de Sintaxe na linha " + (s.left + 1) + 
+                           ", coluna " + (s.right + 1) + 
+                           ". Token nao esperado: '" + s.value + "'");
+    }
+:};
+
+terminal AVANCE, VIRE, LEIASENSOR, SE, ENTAO, ENQUANTO, FUNCAO, RETORNE, INICIO, FIM;
+terminal INTEIRO, LOGICO, PONTO, MAIS, MENOS, MULT, DIV, IGUAL, DIFERENTE, MENOR, MAIOR, ATRIBUICAO;
+terminal PONTOVIRGULA, APARENTESES, FPARENTESES, ACHAVES, FCHAVES;
+terminal String ID, NUMERO, TEXTO;
+
+non terminal programa, lista_comandos, comando;
+non terminal cmd_movimento, cmd_condicional, cmd_repeticao, declaracao, atribuicao, expressao;
+
+precedence left MAIS, MENOS;
+precedence left MULT, DIV;
+precedence left IGUAL, DIFERENTE, MENOR, MAIOR;
+
+programa ::= lista_comandos ;
+
+lista_comandos ::= lista_comandos comando 
+                 | comando ;
+
+comando ::= declaracao PONTOVIRGULA
+          | atribuicao PONTOVIRGULA
+          | cmd_movimento PONTOVIRGULA
+          | cmd_condicional
+          | cmd_repeticao
+          | error PONTOVIRGULA ;
+
+declaracao ::= INTEIRO ID 
+             | LOGICO ID 
+             | PONTO ID ;
+
+atribuicao ::= ID ATRIBUICAO expressao 
+             | ID ATRIBUICAO LEIASENSOR APARENTESES FPARENTESES ;
+
+cmd_movimento ::= AVANCE APARENTESES expressao FPARENTESES
+                | VIRE APARENTESES TEXTO FPARENTESES ;
+
+cmd_condicional ::= SE APARENTESES expressao FPARENTESES ENTAO lista_comandos FIM PONTOVIRGULA ;
+
+cmd_repeticao ::= ENQUANTO APARENTESES expressao FPARENTESES lista_comandos FIM PONTOVIRGULA ;
+
+expressao ::= NUMERO
+            | ID
+            | expressao MAIS expressao
+            | expressao MENOS expressao
+            | expressao MULT expressao
+            | expressao DIV expressao
+            | expressao MENOR expressao
+            | expressao MAIOR expressao
+            | expressao IGUAL expressao
+            | expressao DIFERENTE expressao ;

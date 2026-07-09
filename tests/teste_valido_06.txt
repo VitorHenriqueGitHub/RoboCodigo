@@ -1,0 +1,14 @@
+ponto velocidade;
+ponto distancia;
+inteiro passos;
+velocidade = 3;
+distancia = 0;
+passos = 5;
+velocidade = velocidade * 2;
+distancia = velocidade + passos;
+se (distancia > 8) entao
+    avance(10);
+    vire('direita');
+    avance(5);
+fim;
+avance(distancia);

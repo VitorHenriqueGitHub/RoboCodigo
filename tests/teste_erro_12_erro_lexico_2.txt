@@ -1,0 +1,4 @@
+inteiro sensor;
+sensor = 4;
+$ comando invalido
+avance(1);

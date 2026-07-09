@@ -1,0 +1,4 @@
+inteiro x;
+x = 5;
+x = 'valor de texto';
+avance(x);

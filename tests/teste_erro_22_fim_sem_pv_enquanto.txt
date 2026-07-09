@@ -1,0 +1,15 @@
+inteiro passos;
+ponto velocidade;
+logico ativo;
+passos = 0;
+velocidade = 1;
+ativo = 1;
+enquanto (passos < 20)
+    se (velocidade > 5) entao
+        vire('direita');
+        velocidade = velocidade - 1;
+    fim;
+    avance(velocidade);
+    passos = passos + velocidade;
+fim
+avance(10);

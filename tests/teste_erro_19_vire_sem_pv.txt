@@ -1,0 +1,11 @@
+inteiro contador;
+contador = 0;
+enquanto (contador < 5)
+    avance(1);
+    contador = contador + 1;
+fim;
+se (contador == 5) entao
+    vire('esquerda')
+    avance(3);
+fim;
+avance(10);

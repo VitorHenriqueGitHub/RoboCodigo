@@ -1,0 +1,4 @@
+inteiro x;
+x = 5;
+@avance(x);
+vire('esquerda');
