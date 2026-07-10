@@ -1,0 +1,15 @@
+inteiro distancia;
+inteiro velocidade;
+inteiro tempo;
+distancia = 0;
+velocidade = 5;
+tempo = 0;
+enquanto (tempo < 10)
+    distancia = distancia + velocidade;
+    tempo = tempo + 1;
+fim;
+se (distancia > 30) entao
+    vire('esquerda);
+    avance(5);
+fim;
+avance(distancia);

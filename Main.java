@@ -4,7 +4,7 @@ import java.io.Reader;
 public class Main {
     public static void main(String[] args) {
         try {
-            Reader leitor = new FileReader("codigo_robo.txt");
+            Reader leitor = new FileReader("codigo_robo.txt");//linha para selecionar o arquivo de entrada para a leitura lexica e sintatica
             Lexer scanner = new Lexer(leitor);
             parser sintatico = new parser(scanner);
             sintatico.parse();

@@ -1,0 +1,11 @@
+inteiro a;
+inteiro b;
+a = 3;
+b = 2;
+se (a > b) entao
+    se (b != 0) entao
+        avance(a - b)
+        vire('esquerda');
+    fim;
+fim;
+avance(10);

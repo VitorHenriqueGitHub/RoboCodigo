@@ -1,0 +1,26 @@
+inteiro obs;
+inteiro passos;
+logico girou;
+ponto ajuste;
+obs = leiaSensor();
+passos = 0;
+girou = 0;
+ajuste = 2;
+enquanto (obs != 0)
+    se (obs < 10) entao
+        vire('esquerda');
+        avance(ajuste);
+        girou = 1;
+    fim;
+    se (obs > 50) entao
+        vire('direita');
+        avance(ajuste * 2);
+        girou = 1;
+    fim;
+    avance(1);
+    passos = passos + 1;
+    obs = leiaSensor();
+fim;
+avance(passos);
+vire('esquerda');
+avance(10);

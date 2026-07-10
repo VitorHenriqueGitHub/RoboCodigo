@@ -1,0 +1,8 @@
+inteiro a;
+inteiro b;
+a = 3;
+b = 2;
+se (a > b) entao
+    avance(5)
+    vire('esquerda');
+fim;

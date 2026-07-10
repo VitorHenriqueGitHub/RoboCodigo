@@ -1,0 +1,4 @@
+inteiro distancia;
+distancia = 10;
+avnce(5);
+vire('direita');

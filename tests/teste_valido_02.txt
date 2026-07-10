@@ -1,0 +1,9 @@
+inteiro x;
+logico ligado;
+x = 3;
+ligado = 1;
+avance(1);
+vire('direita');
+se (x > 1) entao
+    avance(5);
+fim;

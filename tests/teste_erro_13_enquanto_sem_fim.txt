@@ -1,0 +1,8 @@
+inteiro x;
+inteiro y;
+x = 5;
+y = 10;
+enquanto (x < y)
+    avance(1);
+    x = x + 1;
+vire('direita');

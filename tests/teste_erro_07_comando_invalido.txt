@@ -1,0 +1,5 @@
+inteiro sensor;
+sensor = 4;
+while (sensor < 5) {
+    avance(1);
+}

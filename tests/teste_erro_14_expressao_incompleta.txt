@@ -1,0 +1,5 @@
+inteiro obs;
+inteiro total;
+obs = leiaSensor();
+total = obs + ;
+avance(total);

@@ -1,0 +1,5 @@
+inteiro distancia;
+distancia = 7;
+leiaSensor();
+avance(3);
+vire('esquerda');

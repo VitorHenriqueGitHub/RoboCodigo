@@ -1,0 +1,5 @@
+inteiro leitura;
+inteiro resultado;
+leitura = leiaSensor(;
+resultado = leitura + 1;
+avance(resultado);
